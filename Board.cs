@@ -37,11 +37,12 @@ namespace tic_tac_toe
         {
             Position spaceToUpdate = new Position(row, column);
             GameBoard[spaceToUpdate.Row, spaceToUpdate.Column] = state;
+            //PrintBoard();
         }
 
         internal void PrintBoard()
         {
-            Console.Clear();
+            //Console.Clear();
 
             Console.WriteLine($" {StateToString(0, 0)} | {StateToString(0, 1)} | {StateToString(0, 2)}");
             Console.WriteLine("---+---+---");

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 
 // https://www.geeksforgeeks.org/minimax-algorithm-in-game-theory-set-3-tic-tac-toe-ai-finding-optimal-move/
 namespace tic_tac_toe
@@ -20,8 +21,8 @@ namespace tic_tac_toe
                 {
                     if (board.IsSpaceEmpty(row, column))
                     {
-                        board.UpdateBoard(row, column, (State)Players.PlayerOne);
-                        int moveValue = Minimax.MinimaxCheck(board, 0, false, 0);
+                        board.UpdateBoard(row, column, (State)Players.PlayerTwo);
+                        int moveValue = Minimax.MinimaxCheck(board, 1, false);
                         board.UpdateBoard(row, column, State.Empty);
 
                         if (moveValue > bestValue)
@@ -36,22 +37,24 @@ namespace tic_tac_toe
             return bestMove;
         }
 
-        public static int MinimaxCheck(Board board, int depth, bool maxComputer, int turnsTaken)
+        public static int MinimaxCheck(Board board, int depth, bool maxComputer)
         {
-            Console.WriteLine(Minimax.Runs);
+            //Console.WriteLine(Minimax.Runs);
             Minimax.Runs++;
+            //Thread.Sleep(1000);
+            //Console.WriteLine(depth);
 
             int score = Minimax.GetWin(board);
 
             // if there is a win or loss
             if (score == 10 || score == -10)
             {
-                Console.WriteLine("WIN OR LOSE");
+                //Console.WriteLine(score);
                 return score;
             }
 
-            // if the game is over without a winnder (draw)
-            if (turnsTaken == Game.TURNS)
+            // if the game is over without a winner (draw)
+            if (depth == Game.TURNS)
             {
                 return 0;
             }
@@ -68,11 +71,10 @@ namespace tic_tac_toe
                         if (board.IsSpaceEmpty(row, column))
                         {
                             board.UpdateBoard(row, column, (State)Players.PlayerTwo);
+                            currentBest = Math.Max(currentBest, Minimax.MinimaxCheck(board, depth + 1, !maxComputer));
+                            board.UpdateBoard(row, column, State.Empty);
                         }
 
-                        currentBest = Math.Max(currentBest, Minimax.MinimaxCheck(board, depth + 1, !maxComputer, depth + 1));
-
-                        board.UpdateBoard(row, column, State.Empty);
                     }
                 }
 
@@ -89,11 +91,10 @@ namespace tic_tac_toe
                         if (board.IsSpaceEmpty(row, column))
                         {
                             board.UpdateBoard(row, column, (State)Players.PlayerOne);
+                            currentBest = Math.Min(currentBest, Minimax.MinimaxCheck(board, depth + 1, !maxComputer));
+                            board.UpdateBoard(row, column, State.Empty);
                         }
 
-                        currentBest = Math.Min(currentBest, Minimax.MinimaxCheck(board, depth + 1, !maxComputer, depth + 1));
-
-                        board.UpdateBoard(row, column, State.Empty);
                     }
                 }
 
