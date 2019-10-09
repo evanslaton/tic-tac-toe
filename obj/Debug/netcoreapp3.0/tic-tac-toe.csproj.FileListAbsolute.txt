@@ -1,0 +1,11 @@
+C:\Users\evans\source\repos\tic-tac-toe\bin\Debug\netcoreapp3.0\tic-tac-toe.exe
+C:\Users\evans\source\repos\tic-tac-toe\bin\Debug\netcoreapp3.0\tic-tac-toe.deps.json
+C:\Users\evans\source\repos\tic-tac-toe\bin\Debug\netcoreapp3.0\tic-tac-toe.runtimeconfig.json
+C:\Users\evans\source\repos\tic-tac-toe\bin\Debug\netcoreapp3.0\tic-tac-toe.runtimeconfig.dev.json
+C:\Users\evans\source\repos\tic-tac-toe\bin\Debug\netcoreapp3.0\tic-tac-toe.dll
+C:\Users\evans\source\repos\tic-tac-toe\bin\Debug\netcoreapp3.0\tic-tac-toe.pdb
+C:\Users\evans\source\repos\tic-tac-toe\obj\Debug\netcoreapp3.0\tic-tac-toe.csprojAssemblyReference.cache
+C:\Users\evans\source\repos\tic-tac-toe\obj\Debug\netcoreapp3.0\tic-tac-toe.AssemblyInfoInputs.cache
+C:\Users\evans\source\repos\tic-tac-toe\obj\Debug\netcoreapp3.0\tic-tac-toe.AssemblyInfo.cs
+C:\Users\evans\source\repos\tic-tac-toe\obj\Debug\netcoreapp3.0\tic-tac-toe.dll
+C:\Users\evans\source\repos\tic-tac-toe\obj\Debug\netcoreapp3.0\tic-tac-toe.pdb
