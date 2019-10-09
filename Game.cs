@@ -8,37 +8,47 @@ namespace tic_tac_toe
         internal static int TURNS = 9;
         private Board Board { get; }
         private Players ActivePlayer { get; set; }
+        private bool ContinuePlaying { get; set; }
         private int TurnsTaken { get; set; }
 
         public Game()
         {
             Board = new Board();
             ActivePlayer = Players.PlayerOne;
+            ContinuePlaying = true;
             TurnsTaken = 0;
         }
 
         public static void PlayGame()
         {
             Game currentGame = new Game();
-            State state;
 
-            while(currentGame.TurnsTaken < Game.TURNS)
+            while(currentGame.ContinuePlaying && currentGame.TurnsTaken < Game.TURNS)
             {
-                state = currentGame.UpdateGame(currentGame.TurnsTaken);
-                if (state == (State)currentGame.ActivePlayer) break;
+                currentGame.UpdateGame();
+                currentGame.TurnsTaken++;
+                Position computersNextMove = Minimax.GetBestMove(currentGame.Board);
+                currentGame.Board.UpdateBoard(computersNextMove.Row, computersNextMove.Column, State.X);
                 currentGame.ChangeActivePlayer();
                 currentGame.TurnsTaken++;
+
             }
 
-            currentGame.PrintWinner(currentGame.TurnsTaken);
-
+            currentGame.PrintWinner();
         }
 
-        private State UpdateGame(int turnsTaken)
+        private void UpdateGame()
         {
             Board.UpdateBoard(GetUserInput(), ActivePlayer);
 
-            return Board.IsTheWinner(ActivePlayer, turnsTaken);
+            if (Board.IsTheWinner(ActivePlayer))
+            {
+                ContinuePlaying = false;
+            }
+            else
+            {
+                ChangeActivePlayer();
+            }
         }
 
         private int GetUserInput()
@@ -49,7 +59,7 @@ namespace tic_tac_toe
 
             do
             {
-                this.Board.PrintBoard(this.ActivePlayer);
+                this.Board.PrintBoard();
                 Console.WriteLine($"\n{ActivePlayer}, Enter a number from 1-9");
                 userInput = Console.ReadLine();
 
@@ -76,13 +86,13 @@ namespace tic_tac_toe
             }
         }
 
-        private void PrintWinner(int turnsTaken)
+        private void PrintWinner()
         {
-            if (Board.IsTheWinner(Players.PlayerOne, turnsTaken) == State.O)
+            if (Board.IsTheWinner(Players.PlayerOne))
             {
                 Console.WriteLine($"\n{Players.PlayerOne} is the winner!");
             }
-            else if (Board.IsTheWinner(Players.PlayerTwo, turnsTaken) == State.X)
+            else if (Board.IsTheWinner(Players.PlayerTwo))
             {
                 Console.WriteLine($"\n{Players.PlayerTwo} is the winner!");
             }

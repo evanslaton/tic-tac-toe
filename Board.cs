@@ -6,8 +6,8 @@ namespace tic_tac_toe
 
     class Board
     {
-        private State[,] GameBoard;
-        private int BOARD_DIMENSION = 3;
+        internal State[,] GameBoard;
+        internal int BOARD_DIMENSION = 3;
 
         internal Board()
         {
@@ -20,15 +20,26 @@ namespace tic_tac_toe
             return GameBoard[spaceToCheck.Row, spaceToCheck.Column] == State.Empty ? true : false;
         }
 
+        internal bool IsSpaceEmpty(int row, int column)
+        {
+            return GameBoard[row, column] == State.Empty ? true : false;
+        }
+
         internal void UpdateBoard(int userInput, Players activePlayer)
         {
             Position spaceToUpdate = new Position(userInput);
             State playerSign = (State)activePlayer;
             GameBoard[spaceToUpdate.Row, spaceToUpdate.Column] = playerSign;
-            PrintBoard(activePlayer);
+            PrintBoard();
         }
 
-        internal void PrintBoard(Players activePlayer)
+        internal void UpdateBoard(int row, int column, State state)
+        {
+            Position spaceToUpdate = new Position(row, column);
+            GameBoard[spaceToUpdate.Row, spaceToUpdate.Column] = state;
+        }
+
+        internal void PrintBoard()
         {
             Console.Clear();
 
@@ -54,7 +65,7 @@ namespace tic_tac_toe
             }
         }
 
-        internal State IsTheWinner(Players activePlayer, int turnsTaken)
+        internal bool IsTheWinner(Players activePlayer)
         {
             State playerSign = (State)activePlayer;
 
@@ -67,13 +78,10 @@ namespace tic_tac_toe
                 || (GameBoard[0, 0] == playerSign && GameBoard[1, 1] == playerSign && GameBoard[2, 2] == playerSign)
                 || (GameBoard[0, 2] == playerSign && GameBoard[1, 1] == playerSign && GameBoard[2, 0] == playerSign))
             {
-                return (State)activePlayer;
+                return true;
             }
-            else if (turnsTaken == Game.TURNS)
-            {
-                return State.Empty;
-            }
-            return activePlayer == Players.PlayerOne ? (State)Players.PlayerTwo : (State)Players.PlayerOne;
+
+            return false;
         }
     }
 }

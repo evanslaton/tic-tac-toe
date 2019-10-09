@@ -3,13 +3,24 @@ namespace tic_tac_toe
 {
     class Position
     {
-        internal int Row { get; }
-        internal int Column { get; }
+        internal int Row { get; set; }
+        internal int Column { get; set; }
+
+        internal Position()
+        {
+
+        }
 
         internal Position(int userInput)
         {
             Row = getRow(userInput);
             Column = getColumn(userInput);
+        }
+
+        internal Position(int row, int column)
+        {
+            Row = row;
+            Column = column;
         }
 
         private int getRow(int userInput)
