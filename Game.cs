@@ -5,45 +5,40 @@ namespace tic_tac_toe
     public enum Players { PlayerOne = 1, PlayerTwo };
     class Game
     {
-        private static int TURNS = 9;
+        internal static int TURNS = 9;
         private Board Board { get; }
         private Players ActivePlayer { get; set; }
-        private bool ContinuePlaying { get; set; }
         private int TurnsTaken { get; set; }
 
         public Game()
         {
             Board = new Board();
             ActivePlayer = Players.PlayerOne;
-            ContinuePlaying = true;
             TurnsTaken = 0;
         }
 
         public static void PlayGame()
         {
             Game currentGame = new Game();
+            State state;
 
-            while(currentGame.ContinuePlaying && currentGame.TurnsTaken < Game.TURNS)
+            while(currentGame.TurnsTaken < Game.TURNS)
             {
-                currentGame.UpdateGame();
+                state = currentGame.UpdateGame(currentGame.TurnsTaken);
+                if (state == (State)currentGame.ActivePlayer) break;
+                currentGame.ChangeActivePlayer();
                 currentGame.TurnsTaken++;
             }
 
-            currentGame.PrintWinner();
+            currentGame.PrintWinner(currentGame.TurnsTaken);
+
         }
 
-        private void UpdateGame()
+        private State UpdateGame(int turnsTaken)
         {
             Board.UpdateBoard(GetUserInput(), ActivePlayer);
 
-            if (Board.IsTheWinner(ActivePlayer))
-            {
-                ContinuePlaying = false;
-            }
-            else
-            {
-                ChangeActivePlayer();
-            }
+            return Board.IsTheWinner(ActivePlayer, turnsTaken);
         }
 
         private int GetUserInput()
@@ -81,13 +76,13 @@ namespace tic_tac_toe
             }
         }
 
-        private void PrintWinner()
+        private void PrintWinner(int turnsTaken)
         {
-            if (Board.IsTheWinner(Players.PlayerOne))
+            if (Board.IsTheWinner(Players.PlayerOne, turnsTaken) == State.O)
             {
                 Console.WriteLine($"\n{Players.PlayerOne} is the winner!");
             }
-            else if (Board.IsTheWinner(Players.PlayerTwo))
+            else if (Board.IsTheWinner(Players.PlayerTwo, turnsTaken) == State.X)
             {
                 Console.WriteLine($"\n{Players.PlayerTwo} is the winner!");
             }
