@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\evans\\source\\repos\\tic-tac-toe\\tic-tac-toe.csproj": {}
+    "C:\\Users\\evans\\source\\tic-tac-toe\\tic-tac-toe.csproj": {}
   },
   "projects": {
-    "C:\\Users\\evans\\source\\repos\\tic-tac-toe\\tic-tac-toe.csproj": {
+    "C:\\Users\\evans\\source\\tic-tac-toe\\tic-tac-toe.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\evans\\source\\repos\\tic-tac-toe\\tic-tac-toe.csproj",
+        "projectUniqueName": "C:\\Users\\evans\\source\\tic-tac-toe\\tic-tac-toe.csproj",
         "projectName": "tic-tac-toe",
-        "projectPath": "C:\\Users\\evans\\source\\repos\\tic-tac-toe\\tic-tac-toe.csproj",
+        "projectPath": "C:\\Users\\evans\\source\\tic-tac-toe\\tic-tac-toe.csproj",
         "packagesPath": "C:\\Users\\evans\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\evans\\source\\repos\\tic-tac-toe\\obj\\",
+        "outputPath": "C:\\Users\\evans\\source\\tic-tac-toe\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\evans\\AppData\\Roaming\\NuGet\\NuGet.Config",
