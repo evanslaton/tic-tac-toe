@@ -42,7 +42,7 @@ namespace tic_tac_toe
 
         internal void PrintBoard()
         {
-            //Console.Clear();
+            Console.Clear();
 
             Console.WriteLine($" {StateToString(0, 0)} | {StateToString(0, 1)} | {StateToString(0, 2)}");
             Console.WriteLine("---+---+---");
@@ -80,6 +80,22 @@ namespace tic_tac_toe
                 || (GameBoard[0, 2] == playerSign && GameBoard[1, 1] == playerSign && GameBoard[2, 0] == playerSign))
             {
                 return true;
+            }
+
+            return false;
+        }
+
+        internal bool HasEmptySpaces()
+        {
+            for (int row = 0; row < this.BOARD_DIMENSION; row++)
+            {
+                for (int column = 0; column < this.BOARD_DIMENSION; column++)
+                {
+                    if (this.GameBoard[row, column] == State.Empty)
+                    {
+                        return true;
+                    }
+                }
             }
 
             return false;

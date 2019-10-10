@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading;
 
 // https://www.geeksforgeeks.org/minimax-algorithm-in-game-theory-set-3-tic-tac-toe-ai-finding-optimal-move/
+// https://ide.geeksforgeeks.org/KTAN36
 namespace tic_tac_toe
 {
     class Minimax
@@ -12,7 +13,7 @@ namespace tic_tac_toe
 
         public static Position GetBestMove(Board board)
         {
-            int bestValue = -1000;
+            int bestValue = int.MinValue;
             Position bestMove = new Position(-1, -1);
 
             for (int row = 0; row < board.BOARD_DIMENSION; row++)
@@ -24,7 +25,6 @@ namespace tic_tac_toe
                         board.UpdateBoard(row, column, (State)Players.PlayerTwo);
                         int moveValue = Minimax.MinimaxCheck(board, 1, false);
                         board.UpdateBoard(row, column, State.Empty);
-
                         if (moveValue > bestValue)
                         {
                             bestMove = new Position(row, column);
@@ -40,7 +40,7 @@ namespace tic_tac_toe
         public static int MinimaxCheck(Board board, int depth, bool maxComputer)
         {
             //Console.WriteLine(Minimax.Runs);
-            Minimax.Runs++;
+            //Minimax.Runs++;
             //Thread.Sleep(1000);
             //Console.WriteLine(depth);
 
@@ -50,19 +50,19 @@ namespace tic_tac_toe
             if (score == 10 || score == -10)
             {
                 //Console.WriteLine(score);
-                return score;
+                return score - depth;
             }
 
             // if the game is over without a winner (draw)
-            if (depth == Game.TURNS)
+            if (board.HasEmptySpaces() == false)
             {
-                return 0;
+                return 0 - depth;
             }
 
             // runs if it's the computer's turn
             if (maxComputer)
             {
-                int currentBest = -1000;
+                int currentBest = int.MinValue;
 
                 for (int row = 0; row < board.BOARD_DIMENSION; row++)
                 {
@@ -82,7 +82,7 @@ namespace tic_tac_toe
             } 
             else // runs if it's the player's turn
             {
-                int currentBest = 1000;
+                int currentBest = int.MaxValue;
 
                 for (int row = 0; row < board.BOARD_DIMENSION; row++)
                 {
