@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 
+// Minimax algorithm examples:
 // https://www.geeksforgeeks.org/minimax-algorithm-in-game-theory-set-3-tic-tac-toe-ai-finding-optimal-move/
 // https://ide.geeksforgeeks.org/KTAN36
+
+// A working minimax tic-tac-toe game used to checkout outcomes against
+// https://blog.vivekpanyam.com/how-to-build-an-ai-that-wins-the-basics-of-minimax-search/
 namespace tic_tac_toe
 {
     class Minimax
