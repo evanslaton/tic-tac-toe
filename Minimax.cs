@@ -33,23 +33,19 @@ namespace tic_tac_toe
                     }
                 }
             }
-            Console.WriteLine($"The best move is {bestMove.Row} and {bestMove.Column}!");
+
             return bestMove;
         }
 
         public static int MinimaxCheck(Board board, int depth, bool maxComputer)
         {
-            //Console.WriteLine(Minimax.Runs);
-            //Minimax.Runs++;
             //Thread.Sleep(1000);
-            //Console.WriteLine(depth);
 
             int score = Minimax.GetWin(board);
 
             // if there is a win or loss
             if (score == 10 || score == -10)
             {
-                //Console.WriteLine(score);
                 return score - depth;
             }
 

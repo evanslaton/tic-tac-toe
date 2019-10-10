@@ -35,9 +35,12 @@ namespace tic_tac_toe
 
         internal void UpdateBoard(int row, int column, State state)
         {
-            Position spaceToUpdate = new Position(row, column);
-            GameBoard[spaceToUpdate.Row, spaceToUpdate.Column] = state;
-            //PrintBoard();
+            if (row > -1 && column > -1)
+            {
+                Position spaceToUpdate = new Position(row, column);
+                GameBoard[spaceToUpdate.Row, spaceToUpdate.Column] = state;
+                //PrintBoard();
+            }
         }
 
         internal void PrintBoard()

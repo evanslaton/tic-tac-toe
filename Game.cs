@@ -27,12 +27,16 @@ namespace tic_tac_toe
             {
                 currentGame.UpdateGame();
                 currentGame.TurnsTaken++;
-                Console.WriteLine(currentGame.ActivePlayer);
+
                 Position computersNextMove = Minimax.GetBestMove(currentGame.Board);
                 currentGame.Board.UpdateBoard(computersNextMove.Row, computersNextMove.Column, State.X);
+                currentGame.Board.PrintBoard();
+                if (currentGame.Board.IsTheWinner(currentGame.ActivePlayer))
+                {
+                    currentGame.ContinuePlaying = false;
+                }
 
                 currentGame.ChangeActivePlayer();
-                Console.WriteLine(currentGame.ActivePlayer);
                 currentGame.TurnsTaken++;
 
             }
