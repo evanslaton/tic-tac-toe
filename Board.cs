@@ -54,7 +54,7 @@ namespace tic_tac_toe
             }
         }
 
-        internal State IsTheWinner(Players activePlayer, int turnsTaken)
+        internal bool IsTheWinner(Players activePlayer)
         {
             State playerSign = (State)activePlayer;
 
@@ -67,13 +67,10 @@ namespace tic_tac_toe
                 || (GameBoard[0, 0] == playerSign && GameBoard[1, 1] == playerSign && GameBoard[2, 2] == playerSign)
                 || (GameBoard[0, 2] == playerSign && GameBoard[1, 1] == playerSign && GameBoard[2, 0] == playerSign))
             {
-                return (State)activePlayer;
+                return true;
             }
-            else if (turnsTaken == Game.TURNS)
-            {
-                return State.Empty;
-            }
-            return activePlayer == Players.PlayerOne ? (State)Players.PlayerTwo : (State)Players.PlayerOne;
+
+            return false;
         }
     }
 }
