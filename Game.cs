@@ -26,8 +26,6 @@ namespace tic_tac_toe
             while(currentGame.ContinuePlaying && currentGame.TurnsTaken < Game.TURNS)
             {
                 currentGame.UpdateGame();
-<<<<<<< HEAD
-=======
                 currentGame.TurnsTaken++;
 
                 Position computersNextMove = Minimax.GetBestMove(currentGame.Board);
@@ -39,14 +37,9 @@ namespace tic_tac_toe
                 }
 
                 currentGame.ChangeActivePlayer();
->>>>>>> minimax
                 currentGame.TurnsTaken++;
-
-<<<<<<< HEAD
-=======
             }
 
->>>>>>> minimax
             currentGame.PrintWinner();
         }
 

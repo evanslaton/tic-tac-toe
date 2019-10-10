@@ -86,8 +86,6 @@ namespace tic_tac_toe
             }
 
             return false;
-<<<<<<< HEAD
-=======
         }
 
         internal bool HasEmptySpaces()
@@ -104,7 +102,6 @@ namespace tic_tac_toe
             }
 
             return false;
->>>>>>> minimax
         }
     }
 }
