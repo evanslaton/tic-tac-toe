@@ -26,9 +26,27 @@ namespace tic_tac_toe
             while(currentGame.ContinuePlaying && currentGame.TurnsTaken < Game.TURNS)
             {
                 currentGame.UpdateGame();
+<<<<<<< HEAD
+=======
                 currentGame.TurnsTaken++;
+
+                Position computersNextMove = Minimax.GetBestMove(currentGame.Board);
+                currentGame.Board.UpdateBoard(computersNextMove.Row, computersNextMove.Column, State.X);
+                currentGame.Board.PrintBoard();
+                if (currentGame.Board.IsTheWinner(currentGame.ActivePlayer))
+                {
+                    currentGame.ContinuePlaying = false;
+                }
+
+                currentGame.ChangeActivePlayer();
+>>>>>>> minimax
+                currentGame.TurnsTaken++;
+
+<<<<<<< HEAD
+=======
             }
 
+>>>>>>> minimax
             currentGame.PrintWinner();
         }
 
@@ -54,7 +72,7 @@ namespace tic_tac_toe
 
             do
             {
-                this.Board.PrintBoard(this.ActivePlayer);
+                this.Board.PrintBoard();
                 Console.WriteLine($"\n{ActivePlayer}, Enter a number from 1-9");
                 userInput = Console.ReadLine();
 

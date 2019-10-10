@@ -6,8 +6,8 @@ namespace tic_tac_toe
 
     class Board
     {
-        private State[,] GameBoard;
-        private int BOARD_DIMENSION = 3;
+        internal State[,] GameBoard;
+        internal int BOARD_DIMENSION = 3;
 
         internal Board()
         {
@@ -20,15 +20,30 @@ namespace tic_tac_toe
             return GameBoard[spaceToCheck.Row, spaceToCheck.Column] == State.Empty ? true : false;
         }
 
+        internal bool IsSpaceEmpty(int row, int column)
+        {
+            return GameBoard[row, column] == State.Empty ? true : false;
+        }
+
         internal void UpdateBoard(int userInput, Players activePlayer)
         {
             Position spaceToUpdate = new Position(userInput);
             State playerSign = (State)activePlayer;
             GameBoard[spaceToUpdate.Row, spaceToUpdate.Column] = playerSign;
-            PrintBoard(activePlayer);
+            PrintBoard();
         }
 
-        internal void PrintBoard(Players activePlayer)
+        internal void UpdateBoard(int row, int column, State state)
+        {
+            if (row > -1 && column > -1)
+            {
+                Position spaceToUpdate = new Position(row, column);
+                GameBoard[spaceToUpdate.Row, spaceToUpdate.Column] = state;
+                //PrintBoard();
+            }
+        }
+
+        internal void PrintBoard()
         {
             Console.Clear();
 
@@ -71,6 +86,25 @@ namespace tic_tac_toe
             }
 
             return false;
+<<<<<<< HEAD
+=======
+        }
+
+        internal bool HasEmptySpaces()
+        {
+            for (int row = 0; row < this.BOARD_DIMENSION; row++)
+            {
+                for (int column = 0; column < this.BOARD_DIMENSION; column++)
+                {
+                    if (this.GameBoard[row, column] == State.Empty)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+>>>>>>> minimax
         }
     }
 }
